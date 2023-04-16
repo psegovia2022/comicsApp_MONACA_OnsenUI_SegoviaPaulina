@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    ons.ready(function() {
+      console.log("Onsen UI is ready!");
+    });
+
+    if (ons.platform.isIPhoneX()) {
+      document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+      document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
+    }
+    
+  </script>
+</head>
+<body>
+
+<ons-splitter>
+    <!-- Side bar menu goes in splitter side. It needs the collapse keyword-->
+    
+    <ons-splitter-side collapse id="sideMenu">
+        <!--Content of the sidebar-->
+        <ons-page>
+        <ons-list-item onclick="">About <ons-list-item>
+        <ons-list-item onclick="">Terms & Conditions <ons-list-item>
+        <ons-list-item onclick="">Contact <ons-list-item>
+        </ons-page>
+    </ons-splitter-side>
+
+<!-- Possible secondary sidebar
+<ons-splitter collapse id="v2SideMenu">
+    <ons-page>
+        <ons-list-item> Customer Link <ons-list-item>
+    </ons-page>
+</ons-splitter>
+
+<!-- Here it goes everything that is NOT in the sidebar menu-->
+    <ons-splitter-content>
+        <!--  Navigation container-->
+        <ons-navigator id="appNav">
+            <ons-page id="welcomePage">
+                <div class="centerContent">
+                    <h1> Comics You Love! </h1>
+                    <p style="margin-bottom: 3em;"> Here you will find the comics of the whole world!</p>
+                    <p> 
+                        <ons-input type="text" placeholder="example@example.com" modifier="underbar" id="loginEmail"> </ons-input>
+                    </p>
+                    <p>
+                        <ons-input type="password" placeholder="Password" modifier="underbar" id="loginPassword"> </ons-input> 
+                    </p>
+                    <p> 
+                        <ons-button onclick="logIn();"> Log In </ons-button>
+                    </p>
+                   
+                    <div style="border: solid 2px gray; margin: 3em; padding: 2em; border-radius: 10px;"> 
+                        <p> Don't have an account yet?</p>
+                        <p> 
+                            <ons-button onclick="loadPage('signup.html');"> Sign Up </ons-button>
+                        </p>
+               </div>
+                </div>
+            </ons-page>
+        </ons-navigator>
+
+    <!-- Create a screen for the Sign Up content -->
+    <!-- Note: every screen besided the currently-visible screen is a <template>; the currently-vis screen is <ons-navigator> -->
+        
+        <template id="signup.html">
+            <ons-page id="signup">
+                <ons-toolbar id="signupToolbar"> 
+                    <div class="left"> 
+                        <ons-back-button> </ons-back-button>
+                    </div>
+                    <div class="center"> Sign Up </div>
+                </ons-toolbar>
+
+                <div style="padding: 1em; text-align:center;">
+                    <!-- <ons-input type="text" placeholder="First name" modifier="underbar" id="firstName"> </ons-input> -->
+                    <!-- <ons-input type="text" placeholder="Last name" modifier="underbar" id="lastName"> </ons-input> -->
+                    <p>
+                        <ons-input type="email" placeholder="example@example.com" modifier="underbar" id="signEmail"> </ons-input>
+                    </p>
+                    <p>
+                    <ons-input type="password" placeholder="Password" modifier="underbar" id="signPassword"> </ons-input> 
+                    </p>
+                    <p>
+                    <ons-input type="password" placeholder="Confirm Password" modifier="underbar" id="signPasswordConfirm"> </ons-input>
+                    </p>
+                    <p> 
+                        <ons-button onclick="clearForm();"> Clear </ons-button>
+                        <ons-button onclick="createAccount();"> Submit </ons-button>
+                    </p>
+                </div>
+            </ons-page>
+        </template>
+
+        <template id="homeCust.html">
+            <ons-page id="homeCust">
+                 <ons-toolbar id="homeCustToolbar">
+                    <div class="center"> Home Customer </div>
+                </ons-toolbar>
+                <div style="padding: 2em; text-align:left;">
+                <h2> Are you looking for a particular comic? </h2>
+                <p>  Search for it in here, if you don't find it let us know, we will look it for you! </p>
+                <p> We have business partners in the whole world. So, don't be shy, we can find what you want. </p>
+
+                <p> 
+                    <ons-search-input placeholder="Search by title"></ons-search-input>
+                </p>
+                
+                <p>
+                    <ons-search-input placeholder="Search by author"></ons-search-input> 
+                </p>
+
+                <p>
+                    <ons-search-input placeholder="Search by year"></ons-search-input> 
+                </p>
+                <p>
+                    <ons-button onclick=""> Search </ons-button>
+                </p>
+            </div>
+
+            <div> 
+                    <ons-button style="margin: 2em; background-color: red;" onclick="logOut()"> Log Out </ons-button>
+            </div>
+            </ons-page>
+        </template>
+
+      <template id="about.html">
+            <ons-page id="about">
+                <h1>ABOUT US </h1>
+                <p> We are passionate about comics and we are committed to make them accessible to all. That's why we have the best prices in the market.</p>
+                
+            </ons-page>
+        </template>
+
+         <template id="exit.html">
+            <ons-page id="exitPage">
+               <div style="padding: 3em;">
+                <h1>We are sad to see you go! </h1>
+                <p> We'll be right here when you are ready to come back!</p>
+
+                <div style="border: solid 1px black; padding: 2em; margin-top: 4em; border-radius: 10px; "> 
+                    <p> In case you are ready to login again, click right here! </p>
+                    <p> 
+                        <ons-input type="text" placeholder="example@example.com" modifier="underbar" id="loginEmail"> </ons-input>
+                    </p>
+                    <p>
+                        <ons-input type="password" placeholder="Password" modifier="underbar" id="loginPassword"> </ons-input> 
+                    </p>
+                    <p> 
+                        <ons-button onclick="logIn();" style="margin-top: 3em;"> Log In </ons-button>
+                    </p>
+                </div>
+                </div>
+                
+            </ons-page>
+        </template>
+        <!-- <template id="homeBus.html">
+            <ons-page id="homeBus">
+            </ons-page>
+        </template> -->
+
+    </ons-splitter-content>
+</ons-splitter>
+<script src="script.js"> </script>
+</body>
+</html>
